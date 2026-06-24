@@ -1,3 +1,5 @@
+import logging
+from typing import Any
 import pandas as pd
 import numpy as np
 from sklearn.compose import ColumnTransformer
@@ -6,9 +8,12 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.model_selection import RandomizedSearchCV
 import joblib
+import os
+
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 class DataPipeline:
     def __init__(self , file_path : str , target_column : str , test_size : float = 0.2 , random_state : int = 42):
@@ -18,7 +23,7 @@ class DataPipeline:
         self.random_state = random_state
 
 
-    def load_and_preprocessing(self):
+    def load_and_preprocess(self):
         try:
             df = pd.read_csv(self.file_path)
             print("Data loaded successfully")
@@ -43,11 +48,16 @@ class DataPipeline:
     
 class ModelTrainer:
 
-    def __init__(self , model = None):
+    def __init__(self , model : Any = None):
         self.model = model if model is not None else XGBClassifier(
             use_label_encoder=False,
             eval_metric='logloss',
             scale_pos_weight = 0.30,
+            subsample = 1,
+            colsample_bytree = 0.9,
+            learning_rate = 0.2,
+            max_depth = 4,
+            n_estimators = 100,
             random_state=42)
 
     def _build_pipeline(self) -> Pipeline:
@@ -90,11 +100,31 @@ class ModelTrainer:
             return self.pipeline
         except Exception as e:
             print("Error in training model",e)
-            
-    def save_pipeline(self , pipeline , path : str):
+
+    def save_pipeline(self , path : str):
         try:
-            joblib.dump(pipeline, path)
-            print("Pipeline saved successfully")
+            if not hasattr(self, 'pipeline'):
+                logger.error("Pipeline not found. Run train_model() first.")
+                return
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            joblib.dump(self.pipeline, path)
+            logger.info("Pipeline saved successfully to %s", path)
         except Exception as e:
-            print("Error in saving pipeline",e)
+            logger.error("Error in saving pipeline: %s", e)
+
+if __name__ == "__main__":
+    DATA_PATH ="../data/raw/german_credit_data.csv"
+    PIPELINE_OUTPUT_PATH = "../artifacts/model.pkl"
     
+    TARGET_COLUMN = 'Risk'
+    
+    data_pipeline = DataPipeline(file_path=DATA_PATH, target_column=TARGET_COLUMN)
+    df = data_pipeline.load_and_preprocess()
+
+    if df is not None:
+        split_result = data_pipeline.split_data(df)
+        if split_result is not None:
+            X_train, X_test, y_train, y_test = split_result
+            model_trainer = ModelTrainer()
+            model_trainer.train_model(X_train, y_train)
+            model_trainer.save_pipeline(PIPELINE_OUTPUT_PATH)
