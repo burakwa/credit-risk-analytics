@@ -10,6 +10,22 @@ dependencies = [
     "pytest (>=9.1.1,<10.0.0)"
 ]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+pythonpath = ["."]
+filterwarnings = [
+    "ignore:Setting the shape on a NumPy array has been deprecated:DeprecationWarning",
+    "ignore:Found unknown categories in columns:UserWarning",
+]
+
+[tool.poetry]
+name = "credit_risk_analytics"
+version = "0.1.0"
+
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
