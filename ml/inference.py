@@ -7,6 +7,7 @@ import joblib
 import pandas as pd
 from sklearn.pipeline import Pipeline
 
+
 logger = logging.getLogger(__name__)
 
 class ModelPredictor:
@@ -52,5 +53,5 @@ class ModelPredictor:
         logger.info(f"Prediction made with {len(df)} records")
         return {"probabilities": prediction.tolist()}
 
-DEFAULT_MODEL_PATH = "../artifacts/model.pkl"
+DEFAULT_MODEL_PATH = Path(__file__).resolve().parent.parent / "artifacts" / "model.pkl"
 predictor = ModelPredictor(model_path=DEFAULT_MODEL_PATH)

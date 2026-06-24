@@ -7,7 +7,9 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "pytest (>=9.1.1,<10.0.0)"
+    "pytest (>=9.1.1,<10.0.0)",
+    "fastapi (>=0.138.0,<0.139.0)",
+    "uvicorn (>=0.49.0,<0.50.0)"
 ]
 
 [tool.pytest.ini_options]
@@ -18,8 +20,10 @@ python_functions = ["test_*"]
 addopts = "-v --tb=short"
 pythonpath = ["."]
 filterwarnings = [
+    "ignore::DeprecationWarning",
     "ignore:Setting the shape on a NumPy array has been deprecated:DeprecationWarning",
     "ignore:Found unknown categories in columns:UserWarning",
+    "ignore:Task 'train' is deprecated:UserWarning",
 ]
 
 [tool.poetry]
@@ -40,4 +44,7 @@ ml = [
     "matplotlib (>=3.11.0,<4.0.0)",
     "seaborn (>=0.13.2,<0.14.0)",
     "xgboost (>=3.3.0,<4.0.0)"
+]
+dev = [
+    "httpx (>=0.28.1,<0.29.0)"
 ]
