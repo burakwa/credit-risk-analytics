@@ -158,7 +158,7 @@ SAMPLES = {
 }
 
 # Sidebar - API configuration
-st.sidebar.image("https://img.icons8.com/color/96/shield.png", width=80)
+st.sidebar.image("assets/logo.png", width=340 )
 st.sidebar.title("Kontrol Paneli")
 
 api_url = st.sidebar.text_input("API Sunucu Adresi", value="http://localhost:8000")
