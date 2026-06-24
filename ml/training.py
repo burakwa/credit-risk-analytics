@@ -26,14 +26,14 @@ class DataPipeline:
     def load_and_preprocess(self):
         try:
             df = pd.read_csv(self.file_path)
-            print("Data loaded successfully")
+            logger.info("Data loaded successfully")
             df = (df
                 .drop(columns=['Unnamed: 0'], errors='ignore')
                 .fillna({'Saving accounts': 'unknown', 'Checking account': 'unknown'})
                 )
             return df
         except Exception as e:
-            print("Error in loading data",e)
+            logger.error("Error in loading data: %s", e)
 
 
     def split_data(self,df):
@@ -41,10 +41,10 @@ class DataPipeline:
             X = df.drop(self.target_column, axis=1)
             y = df[self.target_column].map({'good': 1, 'bad': 0})
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=self.test_size, random_state=self.random_state)
-            print("Data split successfully")
+            logger.info("Data split successfully")
             return X_train, X_test, y_train, y_test
         except Exception as e:
-            print("Error in splitting data",e)
+            logger.error("Error in splitting data: %s", e)
     
 class ModelTrainer:
 
@@ -96,10 +96,10 @@ class ModelTrainer:
         try:
             self.pipeline = self._build_pipeline()
             self.pipeline.fit(X_train, y_train)
-            print("Model trained successfully")
+            logger.info("Model trained successfully")
             return self.pipeline
         except Exception as e:
-            print("Error in training model",e)
+            logger.error("Error in training model: %s", e)
 
     def save_pipeline(self , path : str):
         try:
