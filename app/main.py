@@ -13,7 +13,7 @@ from ml.inference import predictor
 try:
     from app.api.endpoints import router
 except ImportError:
-    from api.endpoints import router
+    from .api.endpoints import router
 
 
 
@@ -39,7 +39,3 @@ app.include_router(router)
 def read_root():
     return {"message": "Credit Risk Analytics API is running", "version": "1.0.0"}
 
-
-@app.get("/health", tags=["health"])
-def health_check():
-    return {"status": "ok", "model_loaded": predictor.is_loaded}
