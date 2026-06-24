@@ -1,0 +1,16 @@
+[project]
+name = "credit_risk_analytics"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Burak K.",email = "burakkilnnc@gmail.com"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pytest (>=9.1.1,<10.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
