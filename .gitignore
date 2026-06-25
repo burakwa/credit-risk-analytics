@@ -62,6 +62,7 @@ data/raw/*.xls
 data/processed/
 data/interim/
 data/external/
+data/raw/german_credit_data.csv
 
 # =============================================================================
 # IDE & Editor
