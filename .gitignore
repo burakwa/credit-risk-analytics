@@ -55,6 +55,8 @@ artifacts/*.onnx
 # =============================================================================
 # Veri Dosyaları (büyük ham veriler repoda tutulmaz)
 # =============================================================================
+data/
+data/raw/*.json
 data/raw/*.csv
 data/raw/*.parquet
 data/raw/*.xlsx
