@@ -2,6 +2,7 @@
 
 Bu proje, makine öğrenmesi teknikleri kullanarak kredi riskini analiz eden ve tahminleyen uçtan uca (end-to-end) bir sistemdir. **FastAPI** tabanlı güçlü bir backend mimarisi ve kullanıcı dostu bir **Streamlit** arayüzü (frontend) barındırır. Projede bağımlılık yönetimi için **Poetry** kullanılmıştır.
 
+Veri Seti : https://www.kaggle.com/datasets/kabure/german-credit-data-with-risk
 ---
 ### ⚖️ Sorumluluk Reddi (Disclaimer)
 Yasal Uyarı: Bu proje tamamen eğitim ve portfolyo amacıyla geliştirilmiştir. Sistem tarafından üretilen kredi riski tahminleri ve analiz sonuçları yatırım, finans veya kesin karar tavsiyesi niteliği taşımamaktadır. Proje yazarının, bu yazılımın kullanımından doğabilecek doğrudan veya dolaylı hiçbir zarardan, veri kaybından ya da finansal kayıptan ötürü herhangi bir sorumluluğu bulunmamaktadır. Kullanıcılar tüm riski kendileri üstlenir.
