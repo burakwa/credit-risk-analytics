@@ -46,25 +46,25 @@ coverage.xml
 # =============================================================================
 # ML Artifacts (eğitilmiş modeller, ağırlıklar)
 # =============================================================================
-.artifacts/*.pkl
-.artifacts/*.joblib
-.artifacts/*.h5
-.artifacts/*.pt
-.artifacts/*.onnx
-
+artifacts/*.pkl
+artifacts/*.joblib
+artifacts/*.h5
+artifacts/*.pt
+artifacts/*.onnx
+artifacts/model.pkl
 # =============================================================================
 # Veri Dosyaları (büyük ham veriler repoda tutulmaz)
 # =============================================================================
-.
-.data/raw/*.json
-.data/raw/*.csv
-.data/raw/*.parquet
-.data/raw/*.xlsx
-.data/raw/*.xls
-.data/processed/
-.data/interim/
-.data/external/
-.data/raw/german_credit_data.csv
+
+data/raw/*.json
+data/raw/*.csv
+data/raw/*.parquet
+data/raw/*.xlsx
+data/raw/*.xls
+data/processed/
+data/interim/
+data/external/
+data/raw/german_credit_data.csv
 
 # =============================================================================
 # IDE & Editor
