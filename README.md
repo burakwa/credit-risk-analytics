@@ -1,5 +1,4 @@
 # Credit Risk Analytics 🚀
-![Credit Risk Analytics Logo](app/ui/assets/logo.png)
 
 Bu proje, makine öğrenmesi teknikleri kullanarak kredi riskini analiz eden ve tahminleyen uçtan uca (end-to-end) bir sistemdir. **FastAPI** tabanlı güçlü bir backend mimarisi ve kullanıcı dostu bir **Streamlit** arayüzü (frontend) barındırır. Projede bağımlılık yönetimi için **Poetry** kullanılmıştır.
 
